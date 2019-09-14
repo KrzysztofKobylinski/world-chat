@@ -1,8 +1,9 @@
 import React from 'react'
 import * as firebase from 'firebase'
 import fire from '../../config/Fire'
-import { FormGroup, FormControl, Button, ButtonToolbar, Panel } from 'react-bootstrap'
+import { Panel } from 'react-bootstrap'
 import './Login.css'
+import { Button, ButtonGroup, FormGroup, InputGroup, Card } from '@blueprintjs/core'
 
 class Login extends React.Component {
   constructor(props) {
@@ -58,48 +59,44 @@ class Login extends React.Component {
   render() {
     return (
       <div className="loginPanel">
-        <Panel bsStyle="info">
-          <Panel.Heading>
-            <Panel.Title>
-              <h1>Acai-Chat</h1>
-            </Panel.Title>
-          </Panel.Heading>
-          <Panel.Body>
-            <FormGroup controlId="formHorizontalEmail">
-              Email:
-              <FormControl
+          <Card elevation={2}>
+            <FormGroup label="Email:" labelFor="text-input" labelInfo="(required)">
+              <InputGroup
+                id="text-input"
                 value={this.state.email}
                 onChange={this.handleChange}
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="johndoe@email.com"
               />
             </FormGroup>
-
-            <FormGroup controlId="formHorizontalPassword">
-              Hasło:
-              <FormControl
+            <FormGroup
+              helperText="Helper text with details..."
+              label="Password:"
+              labelFor="text-input"
+              labelInfo="(required)"
+            >
+              <InputGroup
+                id="text-input"
                 value={this.state.password}
                 onChange={this.handleChange}
                 type="password"
                 name="password"
-                placeholder="Hasło"
+                placeholder="password1"
               />
             </FormGroup>
 
-            <ButtonToolbar>
+            <ButtonGroup fill={true}>
               <Button type="submit" onClick={this.login}>
                 Zaloguj
               </Button>
               <Button type="submit" onClick={this.signup}>
                 Zarejestruj
               </Button>
-            </ButtonToolbar>
-          </Panel.Body>
+            </ButtonGroup>
 
-          <Panel.Footer>
-            Ewentualnie zaloguj się korzystając z:
-            <ButtonToolbar>
+            Login using:
+            <ButtonGroup fill={true}>
               <Button bsStyle="danger" onClick={this.handleProvider('Google')}>
                 Google'a
               </Button>
@@ -109,9 +106,8 @@ class Login extends React.Component {
               <Button bsStyle="info" onClick={this.handleProvider('Twitter')}>
                 Twittera
               </Button>
-            </ButtonToolbar>
-          </Panel.Footer>
-        </Panel>
+            </ButtonGroup>
+          </Card>
       </div>
     )
   }

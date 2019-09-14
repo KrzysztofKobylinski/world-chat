@@ -1,6 +1,15 @@
 
 .loginPanel {
-    width: 600px;
+    /* width: 600px;
     margin: auto;
-    padding: 50px;
+    padding: 50px; */
+    background-color: #F4F5F7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("https://source.unsplash.com/1600x900/?travel,culture");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
