@@ -51,9 +51,11 @@ class PostEditor extends Component {
     }
   }
 
+  
+
   renderMenuButton = () => {
     const exampleMenu = (
-      <Menu>
+      <Menu className = "menuButton" style = {{float:'right'}}>
         <MenuItem icon="cog" text="Language change" popoverProps={{ openOnTargetFocus: false }}>
           <MenuItem text="Custom" />
           <MenuDivider />
@@ -73,11 +75,11 @@ class PostEditor extends Component {
     )
   }
   renderForm = () => (
-    <div>
-      <FormControl value={this.state.postBody} onChange={this.handlePostEditorInputChange} />
-      <input class="bp3-input" type="text" placeholder="Text input" dir="auto" />
-      <TextArea fill={true} onChange={this.onInputChange} value={this.state.textContent} />
-      <Button onClick={this.createPost}>Wyślij</Button>
+    <div className= "textAndButton">
+      
+      <TextArea className = "textArea" style = {{width: '70%', display: 'inline', height:'100%'}} fill={true} onChange={this.handlePostEditorInputChange} value={this.state.postBody} />
+      <Button className = "buttonArea" onClick={this.createPost}>Wyślij</Button>
+
     </div>
   )
 
@@ -92,10 +94,12 @@ class PostEditor extends Component {
   render() {
     console.log(this.props)
     return (
-      <Form inline>
-        {this.renderProfile()}
+      <Form inline className = "">
+       <div className="wholeArea">
+       {this.renderProfile()}
         {this.renderForm()}
-        {this.renderMenuButton()}
+         </div> 
+       <div className= "menuButtonArea">{this.renderMenuButton()}</div> 
       </Form>
     )
   }

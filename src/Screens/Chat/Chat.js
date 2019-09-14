@@ -19,6 +19,15 @@ class Chat extends Component {
       postData: []
     }
   }
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+  
+ 
+  
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
 
   componentDidMount() {
     this.unsubscribe = this.postsCollection.onSnapshot(this.onCollectionUpdate)
@@ -27,6 +36,7 @@ class Chat extends Component {
   componentWillUnmount() {
     this.unsubscribe()
   }
+  
 
   onCollectionUpdate = snapshot => {
     let postData = []

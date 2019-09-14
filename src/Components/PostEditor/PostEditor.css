@@ -1,9 +1,40 @@
 .headerPhoto {
-  margin-right: 20px;
-  width: 80px;
-  height: 80px;
+  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50px;
 }
+
+.textArea{
+ 
+}
+.buttonArea{
+  margin-left: 10px;
+}
+.wholeArea{
+  margin-top: 15px;
+  display:flex;
+  justify-content: space-around;
+  
+}
+.textAndButton{
+  display: flex;
+  align-items: center;
+  height: 80px;
+  flex-grow: 2;
+  
+}
+.menuButtonArea{
+  display: flex;
+  justify-content: flex-end;
+}
+.menuButton{
+  float: right;
+  justify-content: flex-end;
+  
+}
+
