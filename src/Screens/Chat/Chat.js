@@ -88,8 +88,6 @@ class Chat extends Component {
   renderMenuButton = () => {
     const exampleMenu = (
       <Menu className="menuButton" style={{ float: 'right' }}>
-        <MenuItem text={`Display lang: ${this.props.language}`} />
-        <MenuDivider />
         <MenuItem icon="cog" text="Language change" popoverProps={{ openOnTargetFocus: false }}>
           <MenuItem text="Custom" />
           <MenuDivider />
@@ -126,7 +124,7 @@ class Chat extends Component {
           </Tabs>
         </Navbar.Group>
         <Navbar.Group align="right">
-          <span class={flagClassName.concat(this.props.language)}></span>
+          Language: <span class={flagClassName.concat(this.props.language)}></span>
           {this.renderMenuButton()}
         </Navbar.Group>
       </Navbar>
