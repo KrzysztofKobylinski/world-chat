@@ -4,7 +4,6 @@ import Chat from '../Screens/Chat/Chat'
 import Login from '../Screens/Login/Login'
 import './App.css'
 
-
 class App extends React.Component {
   constructor() {
     super()
@@ -16,6 +15,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.authListener()
+    this.setState({ language: navigator.language.substring(0, 2) })
   }
 
   authListener = () => {
@@ -28,18 +28,31 @@ class App extends React.Component {
     })
   }
 
+  onLanguageChange = language => this.setState({ language: language })
+
   render() {
+    console.log('currLang', this.state.language)
     const user = fire.auth().currentUser
     const database = fire.database()
     const firestore = fire.firestore()
-    const settings = { }
+    const settings = {}
     firestore.settings(settings)
     return (
       <div className="splash">
-        {this.state.user ? (
-          <Chat user={user} database={database} firestore={firestore} />
+        {this.state.user && this.state.language ? (
+          <Chat
+            user={user}
+            database={database}
+            firestore={firestore}
+            onLanguageChange={this.onLanguageChange}
+            language={this.state.language}
+          />
         ) : (
-          <Login database={database} />
+          <Login
+            database={database}
+            onLanguageChange={this.onLanguageChange}
+            language={this.state.language}
+          />
         )}
       </div>
     )

@@ -3,7 +3,8 @@ import * as firebase from 'firebase'
 import fire from '../../config/Fire'
 import './Login.css'
 import { Button, ButtonGroup, FormGroup, InputGroup, Card } from '@blueprintjs/core'
-
+import Select from 'react-select'
+import _ from 'lodash'
 class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -38,6 +39,16 @@ class Login extends React.Component {
       })
   }
 
+  makeOption = x => {
+    console.log(2, x, this.props)
+    return {
+      value: x,
+      label: x
+    }
+  }
+  languages = [
+    'en', 'pl', 'es', 'de', 'ch'
+  ]
   handleProvider = providerName => e => {
     e.preventDefault()
     let provider
@@ -58,7 +69,6 @@ class Login extends React.Component {
 
   renderLoginStep = () => (
     <div className="panelInterior">
-
       <div className="loginContent">
         <div className="column">
           <h3>Login using provider:</h3>
@@ -102,6 +112,7 @@ class Login extends React.Component {
           <Button type="submit" onClick={this.signup}>
             Zarejestruj
           </Button>
+          {this.renderSelect()}
         </div>
       </div>
       <div className="toRight">
@@ -109,6 +120,14 @@ class Login extends React.Component {
         {this.renderForwardButton('Almost there!')}
       </div>
     </div>
+  )
+
+  renderSelect = () => (
+    <Select
+      value={this.makeOption(this.props.language)}
+      options={_.map(this.languages, this.makeOption)}
+      onChange={item => this.props.onLanguageChange(item.value)}
+    ></Select>
   )
 
   renderForwardButton = text => {
