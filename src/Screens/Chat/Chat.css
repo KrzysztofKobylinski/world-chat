@@ -10,7 +10,7 @@
 
 .list-group {
     flex-grow: 1;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     background: /* Shadow covers */
     linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, /* Shadows */

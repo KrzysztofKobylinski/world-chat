@@ -4,17 +4,12 @@
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
-
+  width: 100%;
+  overflow: hidden;
 }
-.postDisplay:hover {
-  background-color: #f2f2f2
-  
-
-}
-
 .photoPost {
   margin-right: 20px;
-  width: 40px;
+  min-width: 40px;
   height: 40px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -23,4 +18,30 @@
 }
 
 
+.postDisplay:hover {
+  background-color: #f2f2f2;
+}
 
+.post {
+  flex-grow: 1;
+}
+.info {
+  opacity: 0.3;
+  display: flex;
+  justify-content: space-between;
+}
+
+.postDisplay:hover .post .info {
+  opacity: 1;
+  color: grey
+}
+
+.text {
+
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+
+}
