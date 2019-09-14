@@ -4,7 +4,6 @@ import { ListGroupItem, Button } from 'react-bootstrap'
 import { isPoster } from '../../libs/helpers'
 
 const PostDisplay = props => {
-  console.log(props.post)
   const { translatedText,originalText} = props.post
   const bodyToShow = (translatedText) ? translatedText : originalText
   return (

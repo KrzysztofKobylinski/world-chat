@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import PostDisplay from '../../Components/PostDisplay/PostDisplay'
 import PostEditor from '../../Components/PostEditor/PostEditor'
+import _ from 'lodash'
 
 import { Panel, ListGroup } from 'react-bootstrap'
 import { Button, ButtonGroup, FormGroup, InputGroup, Card } from '@blueprintjs/core'
 
 import './Chat.css'
-const apiKey = "AIzaSyA1xQVYNd7WWiwAmKiBak9ZEy5RyyKJXM4";
-var googleTranslate = require('google-translate')(apiKey);
+const apiKey = 'AIzaSyA1xQVYNd7WWiwAmKiBak9ZEy5RyyKJXM4'
+var googleTranslate = require('google-translate')(apiKey)
 
 class Chat extends Component {
   constructor(props) {
@@ -20,33 +21,15 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    
     this.unsubscribe = this.postsCollection.onSnapshot(this.onCollectionUpdate)
-
   }
-  
-  translate = (post) =>{
-    let translation2 = new Promise(function(resolve, reject){
-      googleTranslate.translate(post.postBody, "es", function(err, translation) {
-        
-        resolve(translation) 
-        });
-    }
-     
-    )
-    translation2.then(translation => {
-      console.log(translation,"here")
-      return translation
-    })
-  
-}
 
   componentWillUnmount() {
     this.unsubscribe()
   }
 
   onCollectionUpdate = snapshot => {
-    const postData = []
+    let postData = []
     snapshot.forEach(doc => {
       const { postBody, postUser, postAvatar, postUID, postTime } = doc.data()
       postData.push({
@@ -57,24 +40,18 @@ class Chat extends Component {
         postUID,
         postTime
       })
-      
-       /* this.translate(postData) */
-     /*  console.log(postData) */
     })
-    
-      this.setState({
-        postData
+    const postsBodies = _.map(postData, 'postBody')
+    googleTranslate.translate(postsBodies, 'es', (err, translation) => {
+      let posts = _.map(translation, function (item, index) {
+        return { ...item, ...postData[index]}
       })
-    
-    
+      this.setState({postData: posts})
+    })
+
   }
-
-
-
   renderPostsList = (user, postData) => {
     return (
-
-
       <ListGroup>
         {postData
           .sort((a, b) => a.postTime - b.postTime)
@@ -82,25 +59,19 @@ class Chat extends Component {
             return <PostDisplay key={id} user={user} post={post} />
           })}
       </ListGroup>
-
-
     )
   }
-  renderFooter = (user, posts) => (
-
-      <PostEditor user={user} postsCollection={posts} />
-
-  )
+  renderFooter = (user, posts) => <PostEditor user={user} postsCollection={posts} />
 
   render() {
     const { user } = this.props
-    const { postData } = this.state
+    const { postData } = this.state  
     return (
       <div>
-          <Card className="chatPanel" elevation={4}>
-            {this.renderPostsList(user, postData)}
-            {this.renderFooter(user, this.postsCollection)}
-          </Card>
+        <Card className="chatPanel" elevation={4}>
+          {this.renderPostsList(user, postData)}
+          {this.renderFooter(user, this.postsCollection)}
+        </Card>
       </div>
     )
   }
