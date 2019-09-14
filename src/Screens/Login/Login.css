@@ -12,8 +12,14 @@
     flex-direction: column;
     height: 100%;
 }
-.content {
+.loginContent {
     flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+}
+.content {
+    flex-grow: 1
 }
 .toRight {
     display: flex;

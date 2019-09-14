@@ -60,47 +60,51 @@ class Login extends React.Component {
     <div className="panelInterior">
       <h3>Provide user info</h3>
 
-      <div className="content">
-        <FormGroup label="Email:" labelFor="text-input" labelInfo="(required)">
-          <InputGroup
-            id="text-input-email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            type="email"
-            name="email"
-            placeholder="eg. johndoe@email.com"
-          />
-        </FormGroup>
-        <FormGroup label="Password:" labelFor="text-input" labelInfo="(required)">
-          <InputGroup
-            id="text-input-password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            type="password"
-            name="password"
-            placeholder="eg. password1"
-          />
-        </FormGroup>
-        <ButtonGroup>
-          <Button type="submit" onClick={this.login}>
-            Zaloguj
-          </Button>
-          <Button type="submit" onClick={this.signup}>
-            Zarejestruj
-          </Button>
-        </ButtonGroup>
-        <div>or Login using:</div>
-        <ButtonGroup>
-          <Button bsStyle="danger" onClick={this.handleProvider('Google')}>
-            Google'a
-          </Button>
-          <Button bsStyle="primary" onClick={this.handleProvider('Facebook')}>
-            Facebooka
-          </Button>
-          <Button bsStyle="info" onClick={this.handleProvider('Twitter')}>
-            Twittera
-          </Button>
-        </ButtonGroup>
+      <div className="loginContent">
+        <div className="column">
+          <FormGroup label="Email:" labelFor="text-input" labelInfo="(required)">
+            <InputGroup
+              id="text-input-email"
+              value={this.state.email}
+              onChange={this.handleChange}
+              type="email"
+              name="email"
+              placeholder="eg. johndoe@email.com"
+            />
+          </FormGroup>
+          <FormGroup label="Password:" labelFor="text-input" labelInfo="(required)">
+            <InputGroup
+              id="text-input-password"
+              value={this.state.password}
+              onChange={this.handleChange}
+              type="password"
+              name="password"
+              placeholder="eg. password1"
+            />
+          </FormGroup>
+          <ButtonGroup>
+            <Button type="submit" onClick={this.login}>
+              Zaloguj
+            </Button>
+            <Button type="submit" onClick={this.signup}>
+              Zarejestruj
+            </Button>
+          </ButtonGroup>
+        </div>
+        <div className="column">
+          <div>or Login using:</div>
+          <ButtonGroup>
+            <Button bsStyle="danger" onClick={this.handleProvider('Google')}>
+              Google'a
+            </Button>
+            <Button bsStyle="primary" onClick={this.handleProvider('Facebook')}>
+              Facebooka
+            </Button>
+            <Button bsStyle="info" onClick={this.handleProvider('Twitter')}>
+              Twittera
+            </Button>
+          </ButtonGroup>
+        </div>
       </div>
       <div className="toRight">
         {this.renderBackwardButton()}
