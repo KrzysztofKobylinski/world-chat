@@ -14,7 +14,7 @@ export const isPoster = (a, b) => {
   if (a === b) {
     return <Button bsStyle="danger">Usuń</Button>
   } else {
-    return "NIE JESTEŚ WŁAŚCICLELEM TEGO POSTA!";
+    return null;
   }
 };
 

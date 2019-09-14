@@ -10,8 +10,7 @@ const PostDisplay = props => (
       <div>
         <strong>{props.post.postUser}</strong>, napisał:
         <strong>{isPoster(props.post.postUID, props.user.uid)}</strong>
-        <p>{props.post.postBody}</p>
-        <p>{props.post.postUID}</p>
+        <div>{props.post.postBody}</div>
       </div>
     </div>
   </ListGroupItem>

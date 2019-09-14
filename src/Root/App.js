@@ -2,6 +2,8 @@ import React from 'react'
 import fire from '../config/Fire'
 import Chat from '../Screens/Chat/Chat'
 import Login from '../Screens/Login/Login'
+import './App.css'
+
 
 class App extends React.Component {
   constructor() {
@@ -29,10 +31,10 @@ class App extends React.Component {
     const user = fire.auth().currentUser
     const database = fire.database()
     const firestore = fire.firestore()
-    const settings = { timestampsInSnapshots: true }
+    const settings = { }
     firestore.settings(settings)
     return (
-      <div>
+      <div className="splash">
         {this.state.user ? (
           <Chat user={user} database={database} firestore={firestore} />
         ) : (

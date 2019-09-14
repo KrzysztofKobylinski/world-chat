@@ -149,11 +149,9 @@ class Login extends React.Component {
       panel = this.renderLoginStep()
     }
     return (
-      <div className="splash">
-        <Card className="card" elevation={4}>
-          {panel}
-        </Card>
-      </div>
+      <Card className="card" elevation={4}>
+        {panel}
+      </Card>
     )
   }
 }

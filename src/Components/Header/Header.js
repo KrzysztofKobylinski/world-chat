@@ -24,12 +24,6 @@ class Header extends Component {
     const { user } = this.props
     return (
       <div className="headerDisplay">
-        <div
-          className="headerPhoto"
-          style={{
-            backgroundImage: `url(${chooseWhatToShow(user.photoURL, noAvatar)})`
-          }}
-        />
         <div>
           <h3>Witaj, {chooseWhatToShow(user.displayName, user.email)}!</h3>
           <p>ProviderID to {this.props.user.providerData[0].providerId}</p>
