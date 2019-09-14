@@ -3,7 +3,7 @@ import PostDisplay from '../../Components/PostDisplay/PostDisplay'
 import PostEditor from '../../Components/PostEditor/PostEditor'
 import _ from 'lodash'
 import fire from '../../config/Fire'
-
+import 'flag-icon-css/css/flag-icon.min.css'
 
 import { Panel, ListGroup } from 'react-bootstrap'
 import {
@@ -50,22 +50,25 @@ class Chat extends Component {
   }
   onCollectionUpdate = snapshot => {
     let postData = []
-    snapshot.forEach(doc => {
-      const { postBody, postUser, postAvatar, postUID, postTime } = doc.data()
-      postData.push({
-        key: doc.id,
-        postBody,
-        postUser,
-        postAvatar,
-        postUID,
-        postTime
+    if (snapshot) {
+      snapshot.forEach(doc => {
+        const { postBody, postUser, postAvatar, postUID, postTime } = doc.data()
+        postData.push({
+          key: doc.id,
+          postBody,
+          postUser,
+          postAvatar,
+          postUID,
+          postTime
+        })
       })
-    })
+    } else postData = this.state.postData
     const postsBodies = _.map(postData, 'postBody')
-    googleTranslate.translate(postsBodies, 'es', (err, translation) => {
+    googleTranslate.translate(postsBodies, this.props.language, (err, translation) => {
       let posts = _.map(translation, function(item, index) {
         return { ...item, ...postData[index] }
       })
+      // console.log('zapytanie return', posts, this.props.language)
       this.setState({ postData: posts })
     })
   }
@@ -85,15 +88,15 @@ class Chat extends Component {
   renderMenuButton = () => {
     const exampleMenu = (
       <Menu className="menuButton" style={{ float: 'right' }}>
-        <MenuItem text="Display lang: Spanish" />
+        <MenuItem text={`Display lang: ${this.props.language}`} />
         <MenuDivider />
         <MenuItem icon="cog" text="Language change" popoverProps={{ openOnTargetFocus: false }}>
           <MenuItem text="Custom" />
           <MenuDivider />
-          <MenuItem text="English" />
-          <MenuItem text="Polish" />
-          <MenuItem text="Spanish" />
-          <MenuItem text="Chinese" />
+          <MenuItem text="English" onClick={() => this.props.onLanguageChange('pl')} />
+          <MenuItem text="Polish" onClick={() => this.props.onLanguageChange('pl')} />
+          <MenuItem text="Spanish" onClick={() => this.props.onLanguageChange('es')} />
+          <MenuItem text="Chinese" onClick={() => this.props.onLanguageChange('ch')} />
         </MenuItem>
         <MenuItem icon="log-out" text="Logout" onClick={this.logout} />
       </Menu>
@@ -105,25 +108,30 @@ class Chat extends Component {
       </Popover>
     )
   }
-  renderNavbar = () => (
-    <Navbar>
-      <Navbar.Group>
-        <Tabs
-          animate={this.state.animate}
-          id="navbar"
-          large={true}
-          onChange={this.handleNavbarTabChange}
-          selectedTabId={this.state.navbarTabId}
-        >
-          <Tab id="Global" title="Global" />
-          <Tab id="Olek" title="Olek" />
-          <Tab id="Juan" title="Juan" />
-        </Tabs>
-      </Navbar.Group>
-      <Navbar.Group align="right">{this.renderMenuButton()}</Navbar.Group>
-    </Navbar>
-  )
-
+  renderNavbar = () => {
+    let flagClassName = 'flag flag-icon flag-icon-'
+    return (
+      <Navbar>
+        <Navbar.Group>
+          <Tabs
+            animate={this.state.animate}
+            id="navbar"
+            large={true}
+            onChange={this.handleNavbarTabChange}
+            selectedTabId={this.state.navbarTabId}
+          >
+            <Tab id="Global" title="Global room" />
+            <Tab id="Olek" title="Olek (private)" />
+            <Tab id="Juan" title="Juan (private)" />
+          </Tabs>
+        </Navbar.Group>
+        <Navbar.Group align="right">
+          <span class={flagClassName.concat(this.props.language)}></span>
+          {this.renderMenuButton()}
+        </Navbar.Group>
+      </Navbar>
+    )
+  }
   render() {
     const { user } = this.props
     const { postData } = this.state

@@ -1,12 +1,11 @@
-
 .splash {
-    background-color: #F4F5F7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url("https://source.unsplash.com/1600x900/?travel,culture");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background-color: #f4f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://source.unsplash.com/1600x900/?travel,culture');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }

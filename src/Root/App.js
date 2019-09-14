@@ -15,7 +15,9 @@ class App extends React.Component {
 
   componentDidMount() {
     this.authListener()
-    this.setState({ language: navigator.language.substring(0, 2) })
+    // this.setState({ language: navigator.language.substring(0, 2) })
+      this.setState({ language: 'es' })
+
   }
 
   authListener = () => {

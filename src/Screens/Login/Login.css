@@ -1,32 +1,49 @@
-
 .card {
-    width: 500px;
-    height: 350px;
-    margin: auto;
-    padding: 50px;
-
+  width: 500px;
+  height: 400px;
+  margin: auto;
+  padding: 50px;
 }
 
 .panelInterior {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .loginContent {
-    flex-grow: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 20px;
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
 }
 .content {
-    flex-grow: 1
+  flex-grow: 1;
 }
 .toRight {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
+}
 
+.toRight {
+  display: flex;
+  justify-content: flex-start;
+}
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
 }
 .bp3-button-group.bp3-vertical.bp3-fill {
-    height: auto !important;
-    padding: 20px;
+  height: auto !important;
+  padding: 20px;
+}
+
+.customFooter {
+  display: flex;
+}
+.skip {
+  flex-grow: 1;
+}
+
+.callOut {
+  margin-top: 15px;
 }

@@ -9,32 +9,27 @@
   border-radius: 50px;
 }
 
-.textArea{
- 
+.textArea {
 }
-.buttonArea{
+.buttonArea {
   margin-left: 10px;
 }
-.wholeArea{
+.wholeArea {
   margin-top: 15px;
-  display:flex;
+  display: flex;
   justify-content: space-around;
-  
 }
-.textAndButton{
+.textAndButton {
   display: flex;
   align-items: center;
   height: 80px;
   flex-grow: 2;
-  
 }
-.menuButtonArea{
+.menuButtonArea {
   display: flex;
   justify-content: flex-end;
 }
-.menuButton{
+.menuButton {
   float: right;
   justify-content: flex-end;
-  
 }
-
