@@ -70,7 +70,6 @@ class PostEditor extends Component {
     />
   )
   render() {
-    console.log(this.props.user.email)
     return (
       <Form inline className="">
         <div className="wholeArea">

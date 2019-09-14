@@ -33,7 +33,6 @@ class App extends React.Component {
   onLanguageChange = language => this.setState({ language: language })
 
   render() {
-    console.log('currLang', this.state.language)
     const user = fire.auth().currentUser
     const database = fire.database()
     const firestore = fire.firestore()
