@@ -2,7 +2,7 @@
   width: 500px;
   height: 400px;
   margin: auto;
-  padding: 50px;
+  padding: 20px 30px !important;
 }
 
 @media screen and (max-width: 600px) {
@@ -24,7 +24,7 @@
   flex-grow: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 20px;
+  /* column-gap: 20px; */
 }
 .content {
   flex-grow: 1;

@@ -25,7 +25,7 @@ const PostDisplay = props => {
               {props.post.postUser}
               <span class={flagClassName.concat(props.post.detectedSourceLanguage)}></span>
             </div>
-            <div>{moment(props.post.postTime).format('HH:MM:SS DD/MM/YYYY')}</div>
+            <div>{moment(props.post.postTime).format('HH:MM DD/MM/YYYY')}</div>
             {/* <div>{isPoster(props.post.postUID, props.user.uid)}</div> */}
           </div>
           <div className="text">{bodyToShow}</div>

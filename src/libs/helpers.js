@@ -19,5 +19,6 @@ export const isPoster = (a, b) => {
 };
 
 //no Avatar placeholder
-export const noAvatar =
-  "https://m.media-amazon.com/images/M/MV5BMjA1MjE2MTQ2MV5BMl5BanBnXkFtZTcwMjE5MDY0Nw@@._V1_.jpg";
+export const noAvatar = (author) =>
+  'https://api.adorable.io/avatars/60/' + encodeURI(author)
+

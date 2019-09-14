@@ -15,13 +15,12 @@ class PostEditor extends Component {
     }
   }
 
-
   handlePostEditorInputChange = e => {
     const { user } = this.props
     this.setState({
       postBody: e.target.value,
       postUser: chooseWhatToShow(user.displayName, user.email),
-      postAvatar: chooseWhatToShow(user.photoURL, noAvatar)
+      postAvatar: chooseWhatToShow(user.photoURL, noAvatar(this.props.user.email))
     })
   }
 
@@ -46,13 +45,19 @@ class PostEditor extends Component {
     }
   }
 
-  
   renderForm = () => (
-    <div className= "textAndButton">
-      
-      <TextArea className = "textArea" style = {{width: '70%', display: 'inline', height:'100%'}} fill={true} onChange={this.handlePostEditorInputChange} value={this.state.postBody} />
-      <Button className = "buttonArea" onClick={this.createPost}>Wyślij</Button>
-
+    <div className="textAndButton">
+      <TextArea
+        className="textArea"
+        style={{ width: '70%', display: 'inline', height: '100%' }}
+        fill={true}
+        onChange={this.handlePostEditorInputChange}
+        value={this.state.postBody}
+        placeholder="Insert text in any language you want :)"
+      />
+      <Button className="buttonArea" onClick={this.createPost}>
+        Send!
+      </Button>
     </div>
   )
 
@@ -60,17 +65,18 @@ class PostEditor extends Component {
     <div
       className="headerPhoto"
       style={{
-        backgroundImage: `url(${chooseWhatToShow(this.props.user.photoURL, noAvatar)})`
+        backgroundImage: `url(${chooseWhatToShow(this.props.user.photoURL, noAvatar(this.props.user.email))})`
       }}
     />
   )
   render() {
+    console.log(this.props.user.email)
     return (
-      <Form inline className = "">
-       <div className="wholeArea">
-       {this.renderProfile()}
-        {this.renderForm()}
-         </div> 
+      <Form inline className="">
+        <div className="wholeArea">
+          {this.renderProfile()}
+          {this.renderForm()}
+        </div>
       </Form>
     )
   }

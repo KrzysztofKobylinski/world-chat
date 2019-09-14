@@ -1,6 +1,6 @@
 .chatPanel {
   margin: auto;
-  padding: 50px;
+  padding: 20px 30px !important;
   height: 80vh;
   width: 500px;
   display: flex;
