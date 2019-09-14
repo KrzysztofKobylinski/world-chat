@@ -1,3 +1,5 @@
+import Select from 'react-select'
+import _ from 'lodash'
 import React from "react";
 import * as firebase from "firebase";
 import fire from "../../config/Fire";
@@ -44,6 +46,16 @@ class Login extends React.Component {
       });
   };
 
+  makeOption = x => {
+    console.log(2, x, this.props)
+    return {
+      value: x,
+      label: x
+    }
+  }
+  languages = [
+    'en', 'pl', 'es', 'de', 'ch'
+  ]
   handleProvider = providerName => e => {
     e.preventDefault();
     let provider;
@@ -115,6 +127,7 @@ class Login extends React.Component {
           <Button type="submit" onClick={this.signup}>
             Zarejestruj
           </Button>
+          {this.renderSelect()}
         </div>
       </div>
       <div className="toRight">
@@ -123,6 +136,14 @@ class Login extends React.Component {
       </div>
     </div>
   );
+
+  renderSelect = () => (
+    <Select
+      value={this.makeOption(this.props.language)}
+      options={_.map(this.languages, this.makeOption)}
+      onChange={item => this.props.onLanguageChange(item.value)}
+    ></Select>
+  )
 
   renderForwardButton = text => {
     return (
