@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Form, FormControl } from 'react-bootstrap'
 import { chooseWhatToShow, noAvatar } from '../../libs/helpers'
-import fire from '../../config/Fire'
 import { Menu, MenuItem, Popover, Button, MenuDivider, TextArea } from '@blueprintjs/core'
 
 import './PostEditor.css'
@@ -16,10 +15,6 @@ class PostEditor extends Component {
     }
   }
 
-  logout = e => {
-    e.preventDefault()
-    fire.auth().signOut()
-  }
 
   handlePostEditorInputChange = e => {
     const { user } = this.props
@@ -52,28 +47,6 @@ class PostEditor extends Component {
   }
 
   
-
-  renderMenuButton = () => {
-    const exampleMenu = (
-      <Menu className = "menuButton" style = {{float:'right'}}>
-        <MenuItem icon="cog" text="Language change" popoverProps={{ openOnTargetFocus: false }}>
-          <MenuItem text="Custom" />
-          <MenuDivider />
-          <MenuItem text="English" />
-          <MenuItem text="Polish" />
-          <MenuItem text="Spanish" />
-          <MenuItem text="Chinese" />
-        </MenuItem>
-        <MenuItem icon="log-out" text="Logout" onClick={this.logout} />
-      </Menu>
-    )
-
-    return (
-      <Popover content={exampleMenu}>
-        <Button icon="cog" minimal="true" />
-      </Popover>
-    )
-  }
   renderForm = () => (
     <div className= "textAndButton">
       
@@ -99,7 +72,6 @@ class PostEditor extends Component {
        {this.renderProfile()}
         {this.renderForm()}
          </div> 
-       <div className= "menuButtonArea">{this.renderMenuButton()}</div> 
       </Form>
     )
   }

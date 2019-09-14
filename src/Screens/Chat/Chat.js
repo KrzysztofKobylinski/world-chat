@@ -2,9 +2,25 @@ import React, { Component } from 'react'
 import PostDisplay from '../../Components/PostDisplay/PostDisplay'
 import PostEditor from '../../Components/PostEditor/PostEditor'
 import _ from 'lodash'
+import fire from '../../config/Fire'
+
 
 import { Panel, ListGroup } from 'react-bootstrap'
-import { Button, ButtonGroup, FormGroup, InputGroup, Card, Navbar, Tab, Tabs } from '@blueprintjs/core'
+import {
+  Button,
+  ButtonGroup,
+  FormGroup,
+  InputGroup,
+  Card,
+  Navbar,
+  Tab,
+  Tabs,
+  Menu,
+  MenuItem,
+  Popover,
+  MenuDivider,
+  TextArea
+} from '@blueprintjs/core'
 
 import './Chat.css'
 const apiKey = 'AIzaSyA1xQVYNd7WWiwAmKiBak9ZEy5RyyKJXM4'
@@ -28,6 +44,10 @@ class Chat extends Component {
     this.unsubscribe()
   }
 
+  logout = e => {
+    e.preventDefault()
+    fire.auth().signOut()
+  }
   onCollectionUpdate = snapshot => {
     let postData = []
     snapshot.forEach(doc => {
@@ -62,9 +82,32 @@ class Chat extends Component {
   }
   renderFooter = (user, posts) => <PostEditor user={user} postsCollection={posts} />
 
+  renderMenuButton = () => {
+    const exampleMenu = (
+      <Menu className="menuButton" style={{ float: 'right' }}>
+        <MenuItem text="Display lang: Spanish" />
+        <MenuDivider />
+        <MenuItem icon="cog" text="Language change" popoverProps={{ openOnTargetFocus: false }}>
+          <MenuItem text="Custom" />
+          <MenuDivider />
+          <MenuItem text="English" />
+          <MenuItem text="Polish" />
+          <MenuItem text="Spanish" />
+          <MenuItem text="Chinese" />
+        </MenuItem>
+        <MenuItem icon="log-out" text="Logout" onClick={this.logout} />
+      </Menu>
+    )
+
+    return (
+      <Popover content={exampleMenu}>
+        <Button icon="cog" minimal="true" />
+      </Popover>
+    )
+  }
   renderNavbar = () => (
     <Navbar>
-      <Navbar.Group align='right'>
+      <Navbar.Group>
         <Tabs
           animate={this.state.animate}
           id="navbar"
@@ -77,6 +120,7 @@ class Chat extends Component {
           <Tab id="Juan" title="Juan" />
         </Tabs>
       </Navbar.Group>
+      <Navbar.Group align="right">{this.renderMenuButton()}</Navbar.Group>
     </Navbar>
   )
 
