@@ -1,8 +1,5 @@
 
-.loginPanel {
-    /* width: 600px;
-    margin: auto;
-    padding: 50px; */
+.splash {
     background-color: #F4F5F7;
     display: flex;
     justify-content: center;
@@ -12,4 +9,12 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.panel {
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    padding: 50px;
+
 }

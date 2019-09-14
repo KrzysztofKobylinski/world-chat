@@ -1,7 +1,6 @@
 import React from 'react'
 import * as firebase from 'firebase'
 import fire from '../../config/Fire'
-import { Panel } from 'react-bootstrap'
 import './Login.css'
 import { Button, ButtonGroup, FormGroup, InputGroup, Card } from '@blueprintjs/core'
 
@@ -9,6 +8,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      step: 0,
       email: '',
       password: ''
     }
@@ -56,58 +56,67 @@ class Login extends React.Component {
       })
   }
 
+  renderLoginStep = () => 
+      <div>
+        <FormGroup label="Email:" labelFor="text-input" labelInfo="(required)">
+          <InputGroup
+            id="text-input"
+            value={this.state.email}
+            onChange={this.handleChange}
+            type="email"
+            name="email"
+            placeholder="johndoe@email.com"
+          />
+        </FormGroup>
+        <FormGroup label="Password:" labelFor="text-input" labelInfo="(required)">
+          <InputGroup
+            id="text-input"
+            value={this.state.password}
+            onChange={this.handleChange}
+            type="password"
+            name="password"
+            placeholder="password1"
+          />
+        </FormGroup>
+        <ButtonGroup fill={true}>
+          <Button type="submit" onClick={this.login}>
+            Zaloguj
+          </Button>
+          <Button type="submit" onClick={this.signup}>
+            Zarejestruj
+          </Button>
+        </ButtonGroup>
+        Login using:
+        <ButtonGroup fill={true}>
+          <Button bsStyle="danger" onClick={this.handleProvider('Google')}>
+            Google'a
+          </Button>
+          <Button bsStyle="primary" onClick={this.handleProvider('Facebook')}>
+            Facebooka
+          </Button>
+          <Button bsStyle="info" onClick={this.handleProvider('Twitter')}>
+            Twittera
+          </Button>
+        </ButtonGroup>
+      </div>
+
+
+  renderIntroStep = () =>
+    <div>
+
+    </div>
   render() {
+    console.log('this.renderLoginStep', this.renderLoginStep())
     return (
-      <div className="loginPanel">
-          <Card elevation={2}>
-            <FormGroup label="Email:" labelFor="text-input" labelInfo="(required)">
-              <InputGroup
-                id="text-input"
-                value={this.state.email}
-                onChange={this.handleChange}
-                type="email"
-                name="email"
-                placeholder="johndoe@email.com"
-              />
-            </FormGroup>
-            <FormGroup
-              helperText="Helper text with details..."
-              label="Password:"
-              labelFor="text-input"
-              labelInfo="(required)"
-            >
-              <InputGroup
-                id="text-input"
-                value={this.state.password}
-                onChange={this.handleChange}
-                type="password"
-                name="password"
-                placeholder="password1"
-              />
-            </FormGroup>
+      <div className="splash">
+        <div className="panel">
 
-            <ButtonGroup fill={true}>
-              <Button type="submit" onClick={this.login}>
-                Zaloguj
-              </Button>
-              <Button type="submit" onClick={this.signup}>
-                Zarejestruj
-              </Button>
-            </ButtonGroup>
-
-            Login using:
-            <ButtonGroup fill={true}>
-              <Button bsStyle="danger" onClick={this.handleProvider('Google')}>
-                Google'a
-              </Button>
-              <Button bsStyle="primary" onClick={this.handleProvider('Facebook')}>
-                Facebooka
-              </Button>
-              <Button bsStyle="info" onClick={this.handleProvider('Twitter')}>
-                Twittera
-              </Button>
-            </ButtonGroup>
+          <Card elevation={4}>
+          {
+            this.renderLoginStep()
+            }
           </Card>
+        </div>
       </div>
     )
   }
