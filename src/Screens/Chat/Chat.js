@@ -6,6 +6,8 @@ import { Panel, ListGroup } from 'react-bootstrap'
 import { Button, ButtonGroup, FormGroup, InputGroup, Card } from '@blueprintjs/core'
 
 import './Chat.css'
+const apiKey = "AIzaSyA1xQVYNd7WWiwAmKiBak9ZEy5RyyKJXM4";
+var googleTranslate = require('google-translate')(apiKey);
 
 class Chat extends Component {
   constructor(props) {
@@ -18,8 +20,26 @@ class Chat extends Component {
   }
 
   componentDidMount() {
+    
     this.unsubscribe = this.postsCollection.onSnapshot(this.onCollectionUpdate)
+
   }
+  
+  translate = (post) =>{
+    let translation2 = new Promise(function(resolve, reject){
+      googleTranslate.translate(post.postBody, "es", function(err, translation) {
+        
+        resolve(translation) 
+        });
+    }
+     
+    )
+    translation2.then(translation => {
+      console.log(translation,"here")
+      return translation
+    })
+  
+}
 
   componentWillUnmount() {
     this.unsubscribe()
@@ -37,10 +57,16 @@ class Chat extends Component {
         postUID,
         postTime
       })
+      
+       /* this.translate(postData) */
+     /*  console.log(postData) */
     })
-    this.setState({
-      postData
-    })
+    
+      this.setState({
+        postData
+      })
+    
+    
   }
 
 
