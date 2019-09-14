@@ -1,0 +1,19 @@
+.headerDisplay {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.headerPhoto {
+  margin-right: 20px;
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50px;
+}
+
+.button {
+  align-self: flex-start;
+}
