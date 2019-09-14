@@ -4,7 +4,7 @@ import PostEditor from '../../Components/PostEditor/PostEditor'
 import _ from 'lodash'
 
 import { Panel, ListGroup } from 'react-bootstrap'
-import { Button, ButtonGroup, FormGroup, InputGroup, Card } from '@blueprintjs/core'
+import { Button, ButtonGroup, FormGroup, InputGroup, Card, Navbar, Tab, Tabs } from '@blueprintjs/core'
 
 import './Chat.css'
 const apiKey = 'AIzaSyA1xQVYNd7WWiwAmKiBak9ZEy5RyyKJXM4'
@@ -19,9 +19,6 @@ class Chat extends Component {
       postData: []
     }
   }
- 
- 
-  
 
   componentDidMount() {
     this.unsubscribe = this.postsCollection.onSnapshot(this.onCollectionUpdate)
@@ -30,7 +27,6 @@ class Chat extends Component {
   componentWillUnmount() {
     this.unsubscribe()
   }
-  
 
   onCollectionUpdate = snapshot => {
     let postData = []
@@ -47,12 +43,11 @@ class Chat extends Component {
     })
     const postsBodies = _.map(postData, 'postBody')
     googleTranslate.translate(postsBodies, 'es', (err, translation) => {
-      let posts = _.map(translation, function (item, index) {
-        return { ...item, ...postData[index]}
+      let posts = _.map(translation, function(item, index) {
+        return { ...item, ...postData[index] }
       })
-      this.setState({postData: posts})
+      this.setState({ postData: posts })
     })
-
   }
   renderPostsList = (user, postData) => {
     return (
@@ -67,12 +62,31 @@ class Chat extends Component {
   }
   renderFooter = (user, posts) => <PostEditor user={user} postsCollection={posts} />
 
+  renderNavbar = () => (
+    <Navbar>
+      <Navbar.Group align='right'>
+        <Tabs
+          animate={this.state.animate}
+          id="navbar"
+          large={true}
+          onChange={this.handleNavbarTabChange}
+          selectedTabId={this.state.navbarTabId}
+        >
+          <Tab id="Global" title="Global" />
+          <Tab id="Olek" title="Olek" />
+          <Tab id="Juan" title="Juan" />
+        </Tabs>
+      </Navbar.Group>
+    </Navbar>
+  )
+
   render() {
     const { user } = this.props
-    const { postData } = this.state  
+    const { postData } = this.state
     return (
       <div>
         <Card className="chatPanel" elevation={4}>
+          {this.renderNavbar()}
           {this.renderPostsList(user, postData)}
           {this.renderFooter(user, this.postsCollection)}
         </Card>

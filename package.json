@@ -7,6 +7,7 @@
     "bootstrap": "^4.3.1",
     "color-hash": "^1.0.3",
     "firebase": "^6.6.1",
+    "flag-icon-css": "^3.3.0",
     "google-translate": "^2.3.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",

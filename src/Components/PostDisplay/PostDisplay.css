@@ -45,3 +45,7 @@
    word-wrap: break-word;      /* IE */
 
 }
+
+.flag {
+  margin-left: 5px
+}
