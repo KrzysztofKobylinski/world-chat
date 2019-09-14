@@ -5,6 +5,16 @@
   padding: 50px;
 }
 
+@media screen and (max-width: 600px) {
+  .card {
+    padding: 10px;
+    height: 90vh;
+    width: 90vw;
+  }
+  .loginContent {
+    display: block !important;
+}
+}
 .panelInterior {
   display: flex;
   flex-direction: column;

@@ -120,9 +120,9 @@ class Chat extends Component {
             onChange={this.handleNavbarTabChange}
             selectedTabId={this.state.navbarTabId}
           >
-            <Tab id="Global" title="Global room" />
-            <Tab id="Olek" title="Olek (private)" />
-            <Tab id="Juan" title="Juan (private)" />
+            <Tab id="Global" title="Global" />
+            <Tab id="Olek" title="Olek" />
+            <Tab id="Juan" title="Juan" />
           </Tabs>
         </Navbar.Group>
         <Navbar.Group align="right">
