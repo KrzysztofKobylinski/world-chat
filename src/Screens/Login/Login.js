@@ -1,69 +1,61 @@
-import React, { Component } from "react";
-import * as firebase from "firebase";
-import fire from "../../config/Fire";
-import {
-  FormGroup,
-  FormControl,
-  Button,
-  ButtonToolbar,
-  Panel
-} from "react-bootstrap";
-import "./Login.css";
+import React from 'react'
+import * as firebase from 'firebase'
+import fire from '../../config/Fire'
+import { FormGroup, FormControl, Button, ButtonToolbar, Panel } from 'react-bootstrap'
+import './Login.css'
 
-class Login extends Component {
+class Login extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      email: "",
-      password: ""
-    };
+      email: '',
+      password: ''
+    }
   }
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
   login = e => {
-    e.preventDefault();
+    e.preventDefault()
     fire
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .catch(err => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   signup = e => {
-    e.preventDefault();
+    e.preventDefault()
     fire
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .catch(err => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   handleProvider = providerName => e => {
-    e.preventDefault();
-    let provider;
-    if (providerName === "Google") {
-      provider = new firebase.auth.GoogleAuthProvider();
-    } else if (providerName === "Facebook") {
-      provider = new firebase.auth.FacebookAuthProvider();
-    } else if (providerName === "Twitter") {
-      provider = new firebase.auth.TwitterAuthProvider();
+    e.preventDefault()
+    let provider
+    if (providerName === 'Google') {
+      provider = new firebase.auth.GoogleAuthProvider()
+    } else if (providerName === 'Facebook') {
+      provider = new firebase.auth.FacebookAuthProvider()
+    } else if (providerName === 'Twitter') {
+      provider = new firebase.auth.TwitterAuthProvider()
     }
     fire
       .auth()
       .signInWithPopup(provider)
       .catch(err => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   render() {
-    console.log(Panel);
-    
     return (
       <div className="loginPanel">
         <Panel bsStyle="info">
@@ -95,7 +87,6 @@ class Login extends Component {
               />
             </FormGroup>
 
-
             <ButtonToolbar>
               <Button type="submit" onClick={this.login}>
                 Zaloguj
@@ -109,23 +100,20 @@ class Login extends Component {
           <Panel.Footer>
             Ewentualnie zaloguj się korzystając z:
             <ButtonToolbar>
-              <Button bsStyle="danger" onClick={this.handleProvider("Google")}>
+              <Button bsStyle="danger" onClick={this.handleProvider('Google')}>
                 Google'a
               </Button>
-              <Button
-                bsStyle="primary"
-                onClick={this.handleProvider("Facebook")}
-              >
+              <Button bsStyle="primary" onClick={this.handleProvider('Facebook')}>
                 Facebooka
               </Button>
-              <Button bsStyle="info" onClick={this.handleProvider("Twitter")}>
+              <Button bsStyle="info" onClick={this.handleProvider('Twitter')}>
                 Twittera
               </Button>
             </ButtonToolbar>
           </Panel.Footer>
         </Panel>
       </div>
-    );
+    )
   }
 }
-export default Login;
+export default Login

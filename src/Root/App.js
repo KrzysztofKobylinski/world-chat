@@ -1,37 +1,36 @@
-import React, { Component } from "react";
-import fire from "../config/Fire";
-import Chat from "../Components/Chat/Chat";
-import Login from "../Components/Login/Login";
+import React from 'react'
+import fire from '../config/Fire'
+import Chat from '../Screens/Chat/Chat'
+import Login from '../Screens/Login/Login'
 
-class App extends Component {
+class App extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
       user: null
-    };
+    }
   }
 
   componentDidMount() {
-    this.authListener();
+    this.authListener()
   }
 
   authListener = () => {
     fire.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({ user });
+        this.setState({ user })
       } else {
-        this.setState({ user: null });
+        this.setState({ user: null })
       }
-    });
-  };
+    })
+  }
 
   render() {
-    console.log('dupa')
-    const user = fire.auth().currentUser;
-    const database = fire.database();
-    const firestore = fire.firestore();
-    const settings = { timestampsInSnapshots: true };
-    firestore.settings(settings);
+    const user = fire.auth().currentUser
+    const database = fire.database()
+    const firestore = fire.firestore()
+    const settings = { timestampsInSnapshots: true }
+    firestore.settings(settings)
     return (
       <div>
         {this.state.user ? (
@@ -40,8 +39,8 @@ class App extends Component {
           <Login database={database} />
         )}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

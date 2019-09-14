@@ -1,27 +1,27 @@
-import React, { Component } from "react";
-import { Button } from "react-bootstrap";
-import fire from "../../config/Fire";
-import "./Header.css";
-import { chooseWhatToShow, noAvatar } from "../../helpers";
+import React, { Component } from 'react'
+import { Button } from 'react-bootstrap'
+import fire from '../../config/Fire'
+import './Header.css'
+import { chooseWhatToShow, noAvatar } from '../../libs/helpers'
 
 class Header extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      newPostBody: "",
-      newPostUser: "",
-      newPostAvatar: ""
-    };
+      newPostBody: '',
+      newPostUser: '',
+      newPostAvatar: ''
+    }
   }
 
   logout = e => {
-    e.preventDefault();
-    fire.auth().signOut();
-  };
+    e.preventDefault()
+    fire.auth().signOut()
+  }
 
   render() {
-    const { user } = this.props;
+    const { user } = this.props
     return (
       <div className="headerDisplay">
         <div
@@ -40,8 +40,8 @@ class Header extends Component {
           </Button>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header
