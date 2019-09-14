@@ -12,3 +12,4 @@ web-build/
 web-report/
 config/firebaseSDK.js
 .DS_Store
+.firebase
