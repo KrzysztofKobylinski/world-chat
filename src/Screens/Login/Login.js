@@ -56,29 +56,32 @@ class Login extends React.Component {
       })
   }
 
-  renderLoginStep = () => 
-      <div>
+  renderLoginStep = () => (
+    <div className="panelInterior">
+      <h3>Provide user info</h3>
+
+      <div className="content">
         <FormGroup label="Email:" labelFor="text-input" labelInfo="(required)">
           <InputGroup
-            id="text-input"
+            id="text-input-email"
             value={this.state.email}
             onChange={this.handleChange}
             type="email"
             name="email"
-            placeholder="johndoe@email.com"
+            placeholder="eg. johndoe@email.com"
           />
         </FormGroup>
         <FormGroup label="Password:" labelFor="text-input" labelInfo="(required)">
           <InputGroup
-            id="text-input"
+            id="text-input-password"
             value={this.state.password}
             onChange={this.handleChange}
             type="password"
             name="password"
-            placeholder="password1"
+            placeholder="eg. password1"
           />
         </FormGroup>
-        <ButtonGroup fill={true}>
+        <ButtonGroup>
           <Button type="submit" onClick={this.login}>
             Zaloguj
           </Button>
@@ -86,8 +89,8 @@ class Login extends React.Component {
             Zarejestruj
           </Button>
         </ButtonGroup>
-        Login using:
-        <ButtonGroup fill={true}>
+        <div>or Login using:</div>
+        <ButtonGroup>
           <Button bsStyle="danger" onClick={this.handleProvider('Google')}>
             Google'a
           </Button>
@@ -99,24 +102,57 @@ class Login extends React.Component {
           </Button>
         </ButtonGroup>
       </div>
-
-
-  renderIntroStep = () =>
-    <div>
-
+      <div className="toRight">
+        {this.renderBackwardButton()}
+        {this.renderForwardButton('Almost there!')}
+      </div>
     </div>
+  )
+
+  renderForwardButton = text => {
+    return (
+      <Button
+        large="true"
+        onClick={() => this.setState({ step: this.state.step + 1 })}
+        rightIcon="arrow-right"
+        intent="success"
+        text={text}
+      />
+    )
+  }
+
+  renderBackwardButton = () => {
+    return (
+      <Button
+        large="true"
+        onClick={() => this.setState({ step: this.state.step - 1 })}
+        icon="arrow-left"
+        minimal="true"
+        text="Go back"
+      />
+    )
+  }
+
+  renderIntroStep = () => (
+    <div className="panelInterior">
+      <h1>World Chat</h1>
+      <div className="content">Chatting with people around the world has never been that easy! </div>
+      <div className="toRight">{this.renderForwardButton('Lets start!')}</div>
+    </div>
+  )
   render() {
-    console.log('this.renderLoginStep', this.renderLoginStep())
+    const currStep = this.state.step
+    let panel
+    if (currStep === 0) {
+      panel = this.renderIntroStep()
+    } else {
+      panel = this.renderLoginStep()
+    }
     return (
       <div className="splash">
-        <div className="panel">
-
-          <Card elevation={4}>
-          {
-            this.renderLoginStep()
-            }
-          </Card>
-        </div>
+        <Card className="card" elevation={4}>
+          {panel}
+        </Card>
       </div>
     )
   }

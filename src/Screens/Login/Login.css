@@ -11,10 +11,27 @@
     background-size: cover;
 }
 
-.panel {
+.card {
     width: 500px;
-    height: 500px;
+    height: 350px;
     margin: auto;
     padding: 50px;
 
 }
+
+.panelInterior {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.content {
+    flex-grow: 1;
+}
+.toRight {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+
+
