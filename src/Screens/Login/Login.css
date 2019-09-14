@@ -26,6 +26,7 @@
     justify-content: flex-end;
 
 }
-
-
-
+.bp3-button-group.bp3-vertical.bp3-fill {
+    height: auto !important;
+    padding: 20px;
+}

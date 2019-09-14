@@ -58,10 +58,24 @@ class Login extends React.Component {
 
   renderLoginStep = () => (
     <div className="panelInterior">
-      <h3>Provide user info</h3>
 
       <div className="loginContent">
         <div className="column">
+          <h3>Login using provider:</h3>
+          <ButtonGroup large={true} vertical={true} fill={true}>
+            <Button bsStyle="danger" onClick={this.handleProvider('Google')}>
+              Google
+            </Button>
+            <Button bsStyle="primary" onClick={this.handleProvider('Facebook')}>
+              Facebook
+            </Button>
+            <Button bsStyle="info" onClick={this.handleProvider('Twitter')}>
+              Twitter
+            </Button>
+          </ButtonGroup>
+        </div>
+        <div className="column">
+          <h3>...or in more traditional way</h3>
           <FormGroup label="Email:" labelFor="text-input" labelInfo="(required)">
             <InputGroup
               id="text-input-email"
@@ -82,28 +96,12 @@ class Login extends React.Component {
               placeholder="eg. password1"
             />
           </FormGroup>
-          <ButtonGroup>
-            <Button type="submit" onClick={this.login}>
-              Zaloguj
-            </Button>
-            <Button type="submit" onClick={this.signup}>
-              Zarejestruj
-            </Button>
-          </ButtonGroup>
-        </div>
-        <div className="column">
-          <div>or Login using:</div>
-          <ButtonGroup>
-            <Button bsStyle="danger" onClick={this.handleProvider('Google')}>
-              Google'a
-            </Button>
-            <Button bsStyle="primary" onClick={this.handleProvider('Facebook')}>
-              Facebooka
-            </Button>
-            <Button bsStyle="info" onClick={this.handleProvider('Twitter')}>
-              Twittera
-            </Button>
-          </ButtonGroup>
+          <Button type="submit" onClick={this.login}>
+            Zaloguj
+          </Button>
+          <Button type="submit" onClick={this.signup}>
+            Zarejestruj
+          </Button>
         </div>
       </div>
       <div className="toRight">
