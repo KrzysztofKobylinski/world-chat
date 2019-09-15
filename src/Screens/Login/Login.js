@@ -207,7 +207,7 @@ class Login extends React.Component {
         <p>
           That leaves us with more than 5 billion people worldwide, who are not familiar with any of "popular" language.
         </p>
-        <p>We want to give them a chance to comunicate with the rest of the world!</p>
+        <p>We want to give them a chance to communicate with the rest of the world!</p>
       </div>
 
       <div className="spaceBetween">

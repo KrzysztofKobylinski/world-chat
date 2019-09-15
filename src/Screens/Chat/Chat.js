@@ -22,6 +22,7 @@ import {
   TextArea,
   Tooltip,
    Position,
+   Classes
 } from '@blueprintjs/core'
 
 import './Chat.css'
@@ -115,6 +116,7 @@ class Chat extends Component {
     return (
       <Navbar>
         <Navbar.Group>
+        <Tooltip content="Private chat feature is not avaliable yet" position={Position.TOP}>
           <Tabs
             animate={this.state.animate}
             id="navbar"
@@ -126,6 +128,7 @@ class Chat extends Component {
             <Tab id="Olek" title="Olek" />
             <Tab id="Juan" title="Juan" />
           </Tabs>
+          </Tooltip>
         </Navbar.Group>
         <Navbar.Group align="right">
           Language: <span class={flagClassName.concat(this.props.language)}></span>
