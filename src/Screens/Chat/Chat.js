@@ -19,7 +19,9 @@ import {
   MenuItem,
   Popover,
   MenuDivider,
-  TextArea
+  TextArea,
+  Tooltip,
+   Position,
 } from '@blueprintjs/core'
 
 import './Chat.css'
@@ -88,14 +90,16 @@ class Chat extends Component {
   renderMenuButton = () => {
     const exampleMenu = (
       <Menu className="menuButton" style={{ float: 'right' }}>
+        <Tooltip content="Feature disable in demo version" position={Position.LEFT}>
         <MenuItem icon="cog" text="Language change" popoverProps={{ openOnTargetFocus: false }}>
-          <MenuItem text="Custom" />
+          <MenuItem disabled="true" text="Custom" />
           <MenuDivider />
-          <MenuItem text="English" onClick={() => this.props.onLanguageChange('pl')} />
-          <MenuItem text="Polish" onClick={() => this.props.onLanguageChange('pl')} />
-          <MenuItem text="Spanish" onClick={() => this.props.onLanguageChange('es')} />
-          <MenuItem text="Chinese" onClick={() => this.props.onLanguageChange('ch')} />
+          <MenuItem disabled="true" text="English" onClick={() => this.props.onLanguageChange('pl')} />
+          <MenuItem disabled="true" text="Polish" onClick={() => this.props.onLanguageChange('pl')} />
+          <MenuItem disabled="true" text="Spanish" onClick={() => this.props.onLanguageChange('es')} />
+          <MenuItem disabled="true" text="Chinese" onClick={() => this.props.onLanguageChange('ch')} />
         </MenuItem>
+        </Tooltip>
         <MenuItem icon="log-out" text="Logout" onClick={this.logout} />
       </Menu>
     )
