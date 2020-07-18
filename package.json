@@ -9,7 +9,7 @@
     "firebase": "^7.15.3",
     "flag-icon-css": "^3.3.0",
     "google-translate": "^2.3.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "react": "^16.9.0",
     "react-bootstrap": "^0.32.4",
